@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Encuesta de Valores Organizacionales</title>
+
+<style>
+    body {
+    font-family: "Segoe UI", MONTSERRAT BOLD, sans-serif;
+    background-color: #252B47;
+    margin: 0;
+    padding: 20px;
+}
+
+
+    h2 {
+        text-align: center;
+        color: #FFFFFF;
+        margin-bottom: 30px;
+    }
+
+    .contenedor {
+    background: #ffffff;
+    max-width: 900px;
+    margin: auto;
+    padding: 32px;
+    border-radius: 14px;
+    box-shadow: 0 18px 35px rgba(0,0,0,0.35);
+}
+
+
+    .pregunta {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 18px;
+    }
+
+    label {
+        font-weight: 600;
+        color: #111827;
+        margin-bottom: 6px;
+        display: block;
+    }
+
+    small {
+        color: #6b7280;
+        margin-bottom: 8px;
+        display: block;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #d1d5db;
+        font-size: 14px;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+    }
+
+    button {
+        background-color: #2563eb;
+        color: white;
+        border: none;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: bold;
+        width: 100%;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 25px;
+    }
+
+    button:hover {
+        background-color: #1d4ed8;
+    }
+
+    .footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #6b7280;
+        font-size: 13px;
+    }
+/* Textos sobre fondo oscuro */
+.subtexto {
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.descripcion {
+    color: #FFFFFF;
+    text-align: center;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.nota {
+    color: #FFFFFF;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.titulo-principal {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.titulo-principal .principal {
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #AA8E79;
+    display: block;
+}
+
+.titulo-principal .secundario {
+    font-size: 18px;
+    font-weight: 500;
+    color: #E5E7EB;
+    margin-top: 6px;
+    display: block;
+}
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+.logo img {
+    height: 60px;   /* ajusta el tamaño aquí */
+    width: auto;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="logo">
+    <img src="logo.jpg" alt="Logo empresa">
+</div>
+
+<div class="titulo-principal">
+    <span class="principal">NOMINACIONES</span>
+    <span class="secundario">por colaboración y trabajo en equipo</span>
+</div>	
+<p class="subtexto">
+    Tu opinión cuenta para reconocer a los departamentos que mejor representan nuestros valores.
+</p>
+
+<p class="descripcion">
+    A continuación, se presentan los principales valores que caracterizan a los departamentos del equipo C&amp;M.
+    Selecciona el departamento que, a tu criterio, sobresale en cada uno de ellos.
+</p>
+
+<p class="nota">
+    <strong>Nota:</strong> Solo se debe seleccionar 1 departamento por cada valor.
+</p>
+   
+</p>
+
+<div class="contenedor">
+    <div id="formulario"></div>
+</div>
+
+
+<script>
+const areas = [
+    "Administración y Finanzas",
+    "Capital Humano",
+    "Ingeniería de Datos Maestros",
+    "Control Interno",
+    "Almacén",
+    "Comercial - Farmacia",
+    "Sistemas",
+    "Logística y Control Vehicular",
+    "Regulación Sanitaria",
+    "Compras",
+    "Atención a clientes"
+];
+
+const preguntas = [
+    {
+        titulo: "Respetuoso",
+        descripcion: "Promueve el trato digno, la cordialidad y la empatía entre todas las personas"
+    },
+    {
+        titulo: "Leal",
+        descripcion: "Se distingue por su compromiso, honestidad y fidelidad hacia la empresa y los colaboradores"
+    },
+    {
+        titulo: "Innovador",
+        descripcion: "Destaca por su creatividad, apertura al cambio y búsqueda constante de nuevas ideas"
+    },
+    {
+        titulo: "Trabajo en equipo",
+        descripcion: "Sobresale por la colaboración, el apoyo mutuo y la comunicación efectiva entre sus integrantes"
+    },
+    {
+        titulo: "Íntegro",
+        descripcion: "Asumen la responsabilidad de sus decisiones y mantienen la coherencia entre lo que dicen y lo que hacen"
+    },
+    {
+        titulo: "Responsable",
+        descripcion: "Asumen sus funciones con seriedad, cuidan los recursos y dan seguimiento oportuno a sus tareas"
+    },
+    {
+        titulo: "Calidad",
+        descripcion: "Sobresale por su enfoque en la excelencia, la precisión y la mejora continua"
+    },
+    {
+        titulo: "Transparencia",
+        descripcion: "Se distingue por su comunicación clara, honesta y abierta"
+    },
+    {
+        titulo: "Disciplinado",
+        descripcion: "Se distingue por su orden, constancia y apego a los procesos establecidos"
+    },
+    {
+        titulo: "Solidario",
+        descripcion: "Se distingue por su apoyo constante, empatía y disposición para ayudar a los demás"
+    },
+    {
+        titulo: "Compromiso",
+        descripcion: "Se caracteriza por dar lo mejor de sí, trabajar con constancia y mantener un firme compromiso con los valores y metas de la organización"
+    }
+];
+
+const scriptURL = "https://script.google.com/macros/s/AKfycbxObK2c_s5-RUSOeIoUNHAN0ZHc2M6vGY6vp8P0QAeOjOlalpjdkXUVNwMb8N9zXg4z/exec";
+
+const contenedor = document.getElementById("formulario");
+
+/* ===== DATOS DEL PARTICIPANTE ===== */
+
+// Nombre
+const divNombre = document.createElement("div");
+divNombre.className = "pregunta";
+
+const labelNombre = document.createElement("label");
+labelNombre.textContent = "Nombre completo (MAYÚSCULAS):";
+
+const inputNombre = document.createElement("input");
+inputNombre.type = "text";
+inputNombre.id = "nombre";
+inputNombre.style.width = "100%";
+inputNombre.style.padding = "6px";
+inputNombre.oninput = () => inputNombre.value = inputNombre.value.toUpperCase();
+
+divNombre.appendChild(labelNombre);
+divNombre.appendChild(inputNombre);
+contenedor.appendChild(divNombre);
+
+// Departamento
+const divDepto = document.createElement("div");
+divDepto.className = "pregunta";
+
+const labelDepto = document.createElement("label");
+labelDepto.textContent = "Departamento:";
+
+const selectDepto = document.createElement("select");
+selectDepto.id = "departamento";
+// Cargar departamentos SOLO UNA VEZ
+selectDepto.innerHTML = `<option value="">Seleccione su departamento</option>`;
+areas.forEach(a => {
+    const op = document.createElement("option");
+    op.value = a;
+    op.textContent = a;
+    selectDepto.appendChild(op);
+});
+
+
+divDepto.appendChild(labelDepto);
+divDepto.appendChild(selectDepto);
+contenedor.appendChild(divDepto);
+
+/* ===== PREGUNTAS ===== */
+
+preguntas.forEach((p, i) => {
+    const div = document.createElement("div");
+    div.className = "pregunta";
+
+    const label = document.createElement("label");
+    label.textContent = `${i + 1}. ${p.titulo}`;
+
+    const descripcion = document.createElement("small");
+    descripcion.textContent = `(${p.descripcion})`;
+
+   const select = document.createElement("select");
+select.id = `pregunta_${i}`;
+
+
+    div.appendChild(label);
+    div.appendChild(descripcion);
+    div.appendChild(select);
+    contenedor.appendChild(div);
+});
+
+// Escuchar cambios SOLO en las preguntas
+preguntas.forEach((p, i) => {
+    document.getElementById(`pregunta_${i}`)
+        .addEventListener("change", actualizarOpciones);
+});
+
+
+// Botón enviar
+const boton = document.createElement("button");
+boton.textContent = "Enviar encuesta";
+boton.style.padding = "10px";
+boton.style.marginTop = "20px";
+contenedor.appendChild(boton);
+
+function actualizarOpciones() {
+    const seleccionadas = preguntas
+        .map((p, i) => document.getElementById(`pregunta_${i}`).value)
+        .filter(v => v !== "");
+
+    preguntas.forEach((p, i) => {
+        const select = document.getElementById(`pregunta_${i}`);
+        const valorActual = select.value;
+
+        select.innerHTML = `<option value="">Seleccione un área</option>`;
+
+        areas.forEach(area => {
+            if (!seleccionadas.includes(area) || area === valorActual) {
+                const option = document.createElement("option");
+                option.value = area;
+                option.textContent = area;
+                if (area === valorActual) option.selected = true;
+                select.appendChild(option);
+            }
+        });
+    });
+}
+
+
+
+actualizarOpciones();
+
+boton.addEventListener("click", () => {
+    if (!inputNombre.value || !selectDepto.value) {
+        alert("Por favor ingresa tu nombre y departamento");
+        return;
+    }
+
+    const datos = {
+        nombre: inputNombre.value,
+        departamento: selectDepto.value
+    };
+
+    let completo = true;
+
+    preguntas.forEach((p, i) => {
+    const val = document.getElementById(`pregunta_${i}`).value;
+    if (!val) completo = false;
+    datos[p.titulo] = val;
+});
+
+
+
+    if (!completo) {
+        alert("Por favor contesta todas las preguntas");
+        return;
+    }
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(datos)
+    })
+    .then(() => {
+        alert("Encuesta enviada correctamente ✅");
+        document.querySelectorAll("input, select").forEach(e => e.value = "");
+        actualizarOpciones();
+    })
+    .catch(() => alert("Error al enviar"));
+});
+</script>
+
+</body>
+</html>
